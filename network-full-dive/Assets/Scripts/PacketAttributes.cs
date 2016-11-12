@@ -10,12 +10,19 @@ public class PacketAttributes : MonoBehaviour {
     Transform dst;
     packet packet;
     float timer;
-    
+
+    void playSound() { 
+        int rand = (int) ( 6 * Random.value );
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.clip = beeps[rand];
+        audio.Play();
+    }
+
     public void init(packet packet, Transform src, Transform dst) {
         this.packet = packet;
         this.dst = dst;
 
-        transform.localScale *= (packet.length / 100);
+        transform.localScale *= (int.Parse( packet.length ) / 100);
 
         string protocol = packet.protocol;
 
@@ -27,16 +34,8 @@ public class PacketAttributes : MonoBehaviour {
         else GetComponent<Renderer>().material = pink;
 
         gameObject.transform.position = src.position;
-        initSound();
-    }
-    IEnumerator initSound() {
-        int rand = (int) (6 * Random.value);
-        AudioSource audSrc = GetComponent<AudioSource>();
-        audSrc.Play();
-        yield return new WaitForSeconds( audSrc.clip.length );
-        audSrc.clip = beeps[rand];
-        audSrc.Play();
-        print(true);
+
+        playSound();
     }
 
     void OnTriggerEnter(Collider other) {

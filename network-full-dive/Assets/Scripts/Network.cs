@@ -12,15 +12,16 @@ public class Network : MonoBehaviour {
     List<packet> queued;
     List<packet> logged;
     GameObject[] ports;
-    float timer, timeStep = 0.1f;
+    float timer, timeStep = .2f;
     string[] ips;
 
 	void Start () {
         active = new List<GameObject>();
         logged = new List<packet>();
-        ReadInPackets rip = new ReadInPackets( "Assets/PacketData/testData.csv" );
+        ReadInPackets rip = new ReadInPackets( "Assets/PacketData/test.csv" );
         queued = rip.packetLst;
         initPorts();
+        print( true );
     }
 
     void initPorts() {
