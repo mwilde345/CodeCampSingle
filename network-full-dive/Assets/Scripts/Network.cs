@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Network : MonoBehaviour {
 
     public GameObject port;
-    public GameObject viewablePacket;
+    public GameObject visualPacket;
     public float radius;
 
     List<GameObject> active;
@@ -26,7 +26,7 @@ public class Network : MonoBehaviour {
         //Get total number of ports to be simulated;
         //Get an String array of ips
         //ips = FilterData.uniqueSourceIPs(queued).ToArray();
-        ips = FilterData.uniqueIpStrings( queued ).ToArray();
+        ips = FilterData.allUniqueIPs( queued ).ToArray();
         if (ips.Length < 1) {
             print( "Problem with unique ips array" );
             return;
@@ -38,7 +38,7 @@ public class Network : MonoBehaviour {
             portInstance.transform.FindChild( "IP" ).GetComponent<TextMesh>().text = ips[i];
             portInstance.transform.position = portPoints[i];
             portInstance.transform.LookAt( GameObject.FindGameObjectWithTag( "Center" ).transform );
-            portInstance.transform.rotation *= Quaternion.Euler( 270, 180 , 0 );
+            portInstance.transform.rotation *= Quaternion.Euler( 90, 0, 0 );
             ports[i] = portInstance;
         }
     }
@@ -59,8 +59,8 @@ public class Network : MonoBehaviour {
                 if (current != null) {
                     Transform src = getPortFromIP( current.ipSource );
                     Transform dst = getPortFromIP( current.ipDest );
-                    if (transform != null) {
-                        GameObject packetInstance = Instantiate( viewablePacket );
+                    if (src != null) {
+                        GameObject packetInstance = Instantiate( visualPacket );
                         packetInstance.GetComponent<PacketAttributes>().init( current, src, dst );
                     }
                 }
