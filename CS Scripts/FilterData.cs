@@ -12,8 +12,13 @@ public class FilterData
     {
         ReadInPacketsComma test = new ReadInPacketsComma(@"C:\Users\Sara\Documents\tst");
         List <packet> pktLst = test.packetLst;
-      //  List<packet> uniqeScIps = uniqueSourceIPs(pktLst);
-        List<string> uniqeStrIps = uniqueIpStrings(pktLst);
+
+        List<packet> testOcc = findOccurances("144.38.26.51", pktLst);
+        for (int i = 0; i < testOcc.Count; i++)
+        {
+            Console.WriteLine(testOcc[i].num + " " + testOcc[i].ipDest);
+        }
+
 
     }
 
@@ -28,11 +33,10 @@ public class FilterData
             pktLst = pktLst.Where(x => !x.ipSource.Trim().Contains(p.ipSource.Trim())).ToList();
             uniqueIPList.Add(p);
         }
-        return uniqueIPList; 
-        
+        return uniqueIPList;         
     }
 
-    static List<string> uniqueIpStrings (List<packet> pktLst)
+    static List<string> uniqueIpSrcStrings (List<packet> pktLst)
     {
         List<string> uniqueIPList = new List<string>();
         while (pktLst.Count != 0)
@@ -42,15 +46,29 @@ public class FilterData
             pktLst = pktLst.Where(x => !x.ipSource.Trim().Contains(p.ipSource.Trim())).ToList();
             uniqueIPList.Add(p.ipSource);
         }
-        uniqueIPList.Sort();
+        return uniqueIPList;
+    }
+
+    static List<string> uniqueIpDestStrings(List<packet> pktLst)
+    {
+        List<string> uniqueIPList = new List<string>();
+        while (pktLst.Count != 0)
+        {
+            packet p = pktLst.First();
+            Console.WriteLine(p.ipDest);
+            pktLst = pktLst.Where(x => !x.ipDest.Trim().Contains(p.ipDest.Trim())).ToList();
+            uniqueIPList.Add(p.ipDest);
+        }
         return uniqueIPList;
     }
 
 
-
-    static void findDestinations(string uniqueIP)
+    static List<packet> findOccurances(string uniqueIP, List<packet> pktLst)
     {
-        
+        pktLst = pktLst.Where(x => x.ipSource.Trim().Contains(uniqueIP.Trim())).ToList();
+        return pktLst; 
     }
+
+
 
 }
