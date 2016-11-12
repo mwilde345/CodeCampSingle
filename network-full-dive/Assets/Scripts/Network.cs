@@ -54,24 +54,25 @@ public class Network : MonoBehaviour {
     
 
     void Update() {
-        timer += Time.deltaTime;
-        if (timer >= timeStep) {
-            timer = 0;
-            if (queued.Count > 0) {
-                packet current = queued[0];
-                if (current != null) {
-                    Transform src = getPortFromIP( current.ipSource );
-                    Transform dst = getPortFromIP( current.ipDest );
-                    if (src != null) {
-                        GameObject packetInstance = Instantiate( visualPacket );
-                        packetInstance.GetComponent<PacketAttributes>().init( current, src, dst );
-                        active.Add( packetInstance );
+        if(!GameState.isPaused()) {
+            timer += Time.deltaTime;
+            if (timer >= timeStep) {
+                timer = 0;
+                if (queued.Count > 0) {
+                    packet current = queued[0];
+                    if (current != null) {
+                        Transform src = getPortFromIP( current.ipSource );
+                        Transform dst = getPortFromIP( current.ipDest );
+                        if (src != null) {
+                            GameObject packetInstance = Instantiate( visualPacket );
+                            packetInstance.GetComponent<PacketAttributes>().init( current, src, dst );
+                            active.Add( packetInstance );
+                        }
                     }
+                    logged.Add( current );
+                    queued.Remove( current );
                 }
-                logged.Add( current );
-                queued.Remove( current );
             }
         }
-        
     }
 }

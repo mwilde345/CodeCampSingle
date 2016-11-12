@@ -13,18 +13,21 @@ public class PacketAttributes : MonoBehaviour {
     public void init(packet packet, Transform src, Transform dst) {
         this.packet = packet;
         this.dst = dst;
-        gameObject.transform.position = src.position;
 
-        int rand = (int)( 6f * Random.value);
-        if(rand == 0) GetComponent<Renderer>().material = red;
-        else if (rand == 1) GetComponent<Renderer>().material = blue;
-        else if (rand == 2) GetComponent<Renderer>().material = green;
-        else if (rand == 3) GetComponent<Renderer>().material = yellow;
-        else if (rand == 4) GetComponent<Renderer>().material = purple;
-        else if (rand == 5) GetComponent<Renderer>().material = pink;
+        string protocol = packet.protocol;
+        print( protocol );
+
+        if(protocol.Equals(" TCP ")) GetComponent<Renderer>().material = red;
+        else if (protocol.Equals( " UDP " )) GetComponent<Renderer>().material = blue;
+        else if (protocol.Equals( " ARP " )) GetComponent<Renderer>().material = green;
+        else if (protocol.Equals( " DHCP " )) GetComponent<Renderer>().material = yellow;
+        else if (protocol.Equals( " SSDP" )) GetComponent<Renderer>().material = purple;
+        else GetComponent<Renderer>().material = pink;
+
+        gameObject.transform.position = src.position;
     }
     void OnTriggerEnter(Collider other) {
-        Terminate();
+        if(other.gameObject.tag == "Port") Terminate();
     }
 
     void Terminate() {
@@ -33,9 +36,11 @@ public class PacketAttributes : MonoBehaviour {
 
 
 	public void Update() {
-        timer += Time.deltaTime;
-        gameObject.transform.LookAt(dst);
-        gameObject.transform.Translate(Vector3.forward * speed, Space.Self);
+        if(!GameState.isPaused()) {
+            timer += Time.deltaTime;
+            gameObject.transform.LookAt(dst);
+            gameObject.transform.Translate(Vector3.forward * speed, Space.Self);
+        } 
 	}
     public packet getRaw() {
         return packet;

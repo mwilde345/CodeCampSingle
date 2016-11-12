@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerLookingAt : MonoBehaviour {
 
-    public static string currentIP;
+    public string currentIP;
 
     void Update() {
         float length = 200.0f;
@@ -13,7 +13,8 @@ public class PlayerLookingAt : MonoBehaviour {
         Debug.DrawRay( rayStart, rayDirection * length, Color.green );
         if (Physics.Raycast( rayStart, rayDirection, out hit, length )) {
             if (hit.collider.tag == "Port") {
-                currentIP = hit.collider.gameObject.GetComponent<Node>().ip;
+                string text = hit.collider.gameObject.GetComponent<Node>().ip;
+                if (text != null) currentIP = text;
                 print(currentIP);
             }
         }

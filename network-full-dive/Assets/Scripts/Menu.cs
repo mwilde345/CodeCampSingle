@@ -3,25 +3,21 @@ using System.Collections;
 
 public class Menu : VRGUI {
 
-    public string currentIP;
+    public Texture dot;
 
     public override void OnVRGUI() {
         if(GameState.isPaused()) {
-            GUILayout.BeginArea( new Rect( 0f, 0f, Screen.width / 2, Screen.height / 2 ) );
-            if (GUILayout.Button("Click Me!")) {
-                //
-            }
-
+            GUILayout.BeginArea( new Rect( Screen.width / 2, Screen.height / 2, 100f, 20f ) );
+            GUILayout.TextField( "Paused" );
             GUILayout.EndArea();
+        }else {
+            GUI.DrawTexture( new Rect( Screen.width / 2, Screen.height / 2, 16f, 16f ), dot);
+            GUILayout.BeginArea( new Rect( Screen.width / 2 - 150f, Screen.height / 2 + 32f,  300f, 300f ) );
+            GUILayout.TextField( GetComponent<PlayerLookingAt>().currentIP );
+            GUILayout.EndArea();
+
         }
-
-
-
-        currentIP = PlayerLookingAt.currentIP;
-        print( Screen.height );
-        GUILayout.BeginArea( new Rect( Screen.width / 2 - 250f, Screen.height / 2 + 120f,  120f, 20f ) );
-        GUILayout.TextField(currentIP);
-        GUILayout.EndArea();
+       
     }
 
 }

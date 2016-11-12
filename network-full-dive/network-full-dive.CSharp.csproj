@@ -63,13 +63,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\PlayerLookingAt.cs" />
     <Compile Include="Assets\Scripts\FilterData.cs" />
     <Compile Include="Assets\Scripts\GameState.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\Network.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\PacketAttributes.cs" />
+    <Compile Include="Assets\Scripts\PlayerLookingAt.cs" />
     <Compile Include="Assets\Scripts\PortInit.cs" />
     <Compile Include="Assets\Scripts\ReadInPacketsComma.cs" />
     <Compile Include="Assets\VRGUI\Scripts\VRGUI.cs" />

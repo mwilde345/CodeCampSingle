@@ -11,7 +11,6 @@ public class GameState : MonoBehaviour {
             if (Input.GetButton( "Start" )) {
                 timer = 0f;
                 pause = !pause;
-                print( pause );
             }
         }
         else timer += Time.deltaTime;
