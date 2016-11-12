@@ -12,6 +12,7 @@ public class Network : MonoBehaviour {
     List<packet> queued;
     List<packet> logged;
     GameObject[] ports;
+    float timer, timeStep = 0.1f;
     string[] ips;
 
 	void Start () {
@@ -38,7 +39,7 @@ public class Network : MonoBehaviour {
             portInstance.transform.FindChild( "IP" ).GetComponent<TextMesh>().text = ips[i];
             portInstance.transform.position = portPoints[i];
             portInstance.transform.LookAt( GameObject.FindGameObjectWithTag( "Center" ).transform );
-            portInstance.transform.rotation *= Quaternion.Euler( 90, 0, 0 );
+            portInstance.transform.rotation *= Quaternion.Euler( 270, 180, 0 );
             ports[i] = portInstance;
         }
     }
@@ -53,7 +54,9 @@ public class Network : MonoBehaviour {
     
 
     void Update() {
-        if (active.Count < 1) {
+        timer += Time.deltaTime;
+        if (timer >= timeStep) {
+            timer = 0;
             if (queued.Count > 0) {
                 packet current = queued[0];
                 if (current != null) {
@@ -62,14 +65,13 @@ public class Network : MonoBehaviour {
                     if (src != null) {
                         GameObject packetInstance = Instantiate( visualPacket );
                         packetInstance.GetComponent<PacketAttributes>().init( current, src, dst );
+                        active.Add( packetInstance );
                     }
                 }
                 logged.Add( current );
                 queued.Remove( current );
             }
-        }else {
-            //Might have to to a clean up for the list
         }
+        
     }
-     s
 }

@@ -11,27 +11,35 @@ public class PacketAttributes : MonoBehaviour {
     //GameObject po;
     Transform dst;
     packet packet;
+    float timer;
     //Material material;
     
     public void init(packet packet, Transform src, Transform dst) {
         this.packet = packet;
         this.dst = dst;
         gameObject.transform.position = src.position;
-        //material = yellow;
-    }
-	
 
+        int rand = (int)( 6f * Random.value);
+        if(rand == 0) GetComponent<Renderer>().material = red;
+        else if (rand == 1) GetComponent<Renderer>().material = blue;
+        else if (rand == 2) GetComponent<Renderer>().material = green;
+        else if (rand == 3) GetComponent<Renderer>().material = yellow;
+        else if (rand == 4) GetComponent<Renderer>().material = purple;
+        else if (rand == 5) GetComponent<Renderer>().material = pink;
+    }
     void OnTriggerEnter(Collider other) {
-        Destroy(gameObject);
-        hasExpired = true;
+        Terminate();
+    }
+
+    void Terminate() {
+        if (timer >= 0.1f) Destroy( gameObject );
     }
 
 
 	public void Update() {
-	    if(!hasExpired) {
-            gameObject.transform.LookAt(dst);
-            gameObject.transform.Translate(Vector3.forward * speed, Space.Self);
-        }
+        timer += Time.deltaTime;
+        gameObject.transform.LookAt(dst);
+        gameObject.transform.Translate(Vector3.forward * speed, Space.Self);
 	}
     public packet getRaw() {
         return packet;
