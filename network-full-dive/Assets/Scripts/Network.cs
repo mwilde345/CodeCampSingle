@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Network : MonoBehaviour {
 
     public GameObject port;
-    public GameObject packet;
+    public GameObject visualPacket;
     public float radius;
 
     List<GameObject> active;
@@ -59,8 +59,8 @@ public class Network : MonoBehaviour {
                 if (current != null) {
                     Transform src = getPortFromIP( current.ipSource );
                     Transform dst = getPortFromIP( current.ipDest );
-                    if (transform != null) {
-                        GameObject packetInstance = Instantiate( packet );
+                    if (src != null) {
+                        GameObject packetInstance = Instantiate( visualPacket );
                         packetInstance.GetComponent<PacketAttributes>().init( current, src, dst );
                     }
                 }
