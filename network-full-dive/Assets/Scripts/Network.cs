@@ -5,21 +5,43 @@ using System.Collections.Generic;
 public class Network : MonoBehaviour {
 
     public GameObject port;
+    public GameObject packet;
     public float radius;
 
-    List<PacketAttributes> active;
+    List<GameObject> active;
     List<packet> queued;
     List<packet> logged;
     GameObject[] ports;
     string[] ips;
 
 	void Start () {
-        active = new List<PacketAttributes>();
+        active = new List<GameObject>();
+        logged = new List<packet>();
         ReadInPacketsComma rip = new ReadInPacketsComma( "Assets/PacketData/test.csv" );
         queued = rip.packetLst;
         initPorts();
     }
 
+    void initPorts() {
+        //Get total number of ports to be simulated;
+        //Get an String array of ips
+        //ips = FilterData.uniqueSourceIPs(queued).ToArray();
+        ips = FilterData.uniqueIpStrings( queued ).ToArray();
+        if (ips.Length < 1) {
+            print( "Problem with unique ips array" );
+            return;
+        }
+        ports = new GameObject[ips.Length];
+        Vector3[] portPoints = PortInit.initPortPoints( radius, ips.Length );
+        for (int i = 0; i < portPoints.Length; i++) {
+            GameObject portInstance = Instantiate( port );
+            portInstance.transform.FindChild( "IP" ).GetComponent<TextMesh>().text = ips[i];
+            portInstance.transform.position = portPoints[i];
+            portInstance.transform.LookAt( GameObject.FindGameObjectWithTag( "Center" ).transform );
+            portInstance.transform.rotation *= Quaternion.Euler( 90, 0, 0 );
+            ports[i] = portInstance;
+        }
+    }
 
     //Null for unfound ip
     Transform getPortFromIP(string ip) {
@@ -28,36 +50,25 @@ public class Network : MonoBehaviour {
         }
         return null;
     }
-
-
-    void initPorts() {
-        //Get total number of ports to be simulated;
-        //Get an String array of ips
-        //ips = FilterData.uniqueSourceIPs(queued).ToArray();
-        //List<packet> unique = FilterData.uniqueSourceIPs();
-        //for (int i = 0; i < unique.Count; i++) {
-         //   ips[i] = packet.
-        //s}
-        if (ips.Length < 1) return;
-        Vector3[] portPoints = PortInit.initPortPoints( radius, ips.Length );
-        for (int i = 0; i < portPoints.Length; i++) {
-            GameObject portInstance = Instantiate( port );
-            portInstance.transform.position = portPoints[i];
-            portInstance.transform.LookAt( GameObject.FindGameObjectWithTag("Center").transform );
-            portInstance.transform.rotation *= Quaternion.Euler( 90, 0, 0 );
-        }
-    }
+    
 
     void Update() {
         if (active.Count < 1) {
-            packet current = queued[0];
-            active.Add( new PacketAttributes( current, getPortFromIP(current.ipDest).transform ) );
-            logged.Add(current);
-            queued.Remove(current);
-        }else {
-            foreach (PacketAttributes pa in active) {
-                if (pa.checkExpirationDate()) active.Remove(pa);
+            if (queued.Count > 0) {
+                packet current = queued[0];
+                if (current != null) {
+                    Transform src = getPortFromIP( current.ipSource );
+                    Transform dst = getPortFromIP( current.ipDest );
+                    if (transform != null) {
+                        GameObject packetInstance = Instantiate( packet );
+                        packetInstance.GetComponent<PacketAttributes>().init( current, src, dst );
+                    }
+                }
+                logged.Add( current );
+                queued.Remove( current );
             }
+        }else {
+            //Might have to to a clean up for the list
         }
     }
 

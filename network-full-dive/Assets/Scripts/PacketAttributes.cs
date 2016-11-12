@@ -8,27 +8,29 @@ public class PacketAttributes : MonoBehaviour {
     bool hasExpired;
 
     //Packet Object
-    GameObject po;
-    Transform dest;
+    //GameObject po;
+    Transform dst;
     packet packet;
-    Material material;
-
-	public PacketAttributes(packet packet, Transform dest) {
-        material = yellow;
-        this.dest = dest;
+    //Material material;
+    
+    public void init(packet packet, Transform src, Transform dst) {
+        this.packet = packet;
+        this.dst = dst;
+        gameObject.transform.position = src.position;
+        //material = yellow;
     }
 	
 
     void OnTriggerEnter(Collider other) {
-        Destroy(po);
+        Destroy(gameObject);
         hasExpired = true;
     }
 
 
-	void Update () {
+	public void Update() {
 	    if(!hasExpired) {
-            po.transform.LookAt(dest);
-            po.transform.Translate(Vector3.forward * speed, Space.Self);
+            gameObject.transform.LookAt(dst);
+            gameObject.transform.Translate(Vector3.forward * speed, Space.Self);
         }
 	}
     public packet getRaw() {
