@@ -26,7 +26,7 @@ public class Network : MonoBehaviour {
         //Get total number of ports to be simulated;
         //Get an String array of ips
         //ips = FilterData.uniqueSourceIPs(queued).ToArray();
-        ips = FilterData.uniqueIpStrings( queued ).ToArray();
+        ips = FilterData.allUniqueIPs( queued ).ToArray();
         if (ips.Length < 1) {
             print( "Problem with unique ips array" );
             return;

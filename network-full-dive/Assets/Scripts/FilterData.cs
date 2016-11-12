@@ -50,6 +50,16 @@ public class FilterData
         return uniqueIPList;
     }
 
+    public static List<string> allUniqueIPs (List<packet> pktLst)
+    {
+        List<string> srcIps = uniqueIpSrcStrings(pktLst);
+        List<string> destIps = uniqueIpDestStrings(pktLst);
+        srcIps.AddRange(destIps);
+        return srcIps;
+
+
+    }
+
 
     static List<packet> findOccurances(string uniqueIP, List<packet> pktLst)
     {
