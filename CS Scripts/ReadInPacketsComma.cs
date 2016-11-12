@@ -41,6 +41,8 @@ public class ReadInPacketsComma
             line = line.Replace('\"', ' ');
             line = line.Replace('"', ' ');
             line = line.Trim();
+            
+
 
             string [] values = line.Split(',');
 
