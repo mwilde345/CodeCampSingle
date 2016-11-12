@@ -31,3 +31,6 @@ public class PortInit : MonoBehaviour {
     }
     
 }
+// Code provided courtesy of:
+//  Hoeloe 
+//  http://answers.unity3d.com/questions/532565/flipping-normals-with-shader-zeroing-out.html
