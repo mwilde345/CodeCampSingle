@@ -8,19 +8,7 @@ public class FilterData
 
 
     //Test stuff 
-    static void Main(string[] args)
-    {
-        ReadInPacketsComma test = new ReadInPacketsComma(@"C:\Users\Sara\Documents\tst");
-        List<packet> pktLst = test.packetLst;
-
-        List<packet> testOcc = findOccurances("144.38.26.51", pktLst);
-        for (int i = 0; i < testOcc.Count; i++)
-        {
-            Console.WriteLine(testOcc[i].num + " " + testOcc[i].ipDest);
-        }
-
-
-    }
+   
 
     // Returns a packet list of the first occurance of each unique ipSource 
     static List<packet> uniqueSourceIPs(List<packet> pktLst)
