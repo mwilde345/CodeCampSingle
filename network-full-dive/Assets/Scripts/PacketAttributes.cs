@@ -4,6 +4,7 @@ using System.Collections;
 public class PacketAttributes : MonoBehaviour {
 
     public Material red, blue, green, yellow, purple, pink;
+    public AudioClip[] beeps;
     public float speed;
    
     Transform dst;
@@ -14,8 +15,9 @@ public class PacketAttributes : MonoBehaviour {
         this.packet = packet;
         this.dst = dst;
 
+        transform.localScale *= (packet.length / 100);
+
         string protocol = packet.protocol;
-        print( protocol );
 
         if(protocol.Equals(" TCP ")) GetComponent<Renderer>().material = red;
         else if (protocol.Equals( " UDP " )) GetComponent<Renderer>().material = blue;
@@ -25,7 +27,18 @@ public class PacketAttributes : MonoBehaviour {
         else GetComponent<Renderer>().material = pink;
 
         gameObject.transform.position = src.position;
+        initSound();
     }
+    IEnumerator initSound() {
+        int rand = (int) (6 * Random.value);
+        AudioSource audSrc = GetComponent<AudioSource>();
+        audSrc.Play();
+        yield return new WaitForSeconds( audSrc.clip.length );
+        audSrc.clip = beeps[rand];
+        audSrc.Play();
+        print(true);
+    }
+
     void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Port") Terminate();
     }
