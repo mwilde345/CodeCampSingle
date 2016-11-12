@@ -12,8 +12,9 @@ public class FilterData
     {
         ReadInPacketsComma test = new ReadInPacketsComma(@"C:\Users\Sara\Documents\tst");
         List <packet> pktLst = test.packetLst;
-        List<packet> uniqeScIps = uniqueSourceIPs(pktLst);
-        
+      //  List<packet> uniqeScIps = uniqueSourceIPs(pktLst);
+        List<string> uniqeStrIps = uniqueIpStrings(pktLst);
+
     }
 
     // Returns a packet list of the first occurance of each unique ipSource 
@@ -24,20 +25,32 @@ public class FilterData
         {
             packet p = pktLst.First();
             Console.WriteLine(p.ipSource);
-            for (int i = 0; i < pktLst.Count; i++)
-            {
-                if (pktLst[i].ipSource.Trim().Contains(p.ipSource.Trim()))
-                {
-                    pktLst.Remove(pktLst[i]);
-                }
-            }
+            pktLst = pktLst.Where(x => !x.ipSource.Trim().Contains(p.ipSource.Trim())).ToList();
             uniqueIPList.Add(p);
         }
         return uniqueIPList; 
         
     }
 
+    static List<string> uniqueIpStrings (List<packet> pktLst)
+    {
+        List<string> uniqueIPList = new List<string>();
+        while (pktLst.Count != 0)
+        {
+            packet p = pktLst.First();
+            Console.WriteLine(p.ipSource);
+            pktLst = pktLst.Where(x => !x.ipSource.Trim().Contains(p.ipSource.Trim())).ToList();
+            uniqueIPList.Add(p.ipSource);
+        }
+        uniqueIPList.Sort();
+        return uniqueIPList;
+    }
 
 
+
+    static void findDestinations(string uniqueIP)
+    {
+        
+    }
 
 }
