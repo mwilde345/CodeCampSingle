@@ -18,7 +18,7 @@ public class Network : MonoBehaviour {
 	void Start () {
         active = new List<GameObject>();
         logged = new List<packet>();
-        ReadInPackets rip = new ReadInPackets( "Assets/PacketData/testData.txt" );
+        ReadInPackets rip = new ReadInPackets( "Assets/PacketData/testData.csv" );
         queued = rip.packetLst;
         initPorts();
     }

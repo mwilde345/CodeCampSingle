@@ -2,22 +2,22 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Net;
-using System.Text.RegularExpressions;
+
 
 public class packet
 {
-    public string protocol, ipSource, ipDest, time, port;   
+    public string protocol, ipSource, ipDest, time, length;   
 
    
     // A packet contains its number (in order read in), time read in after starting, source, Destination, protocol, length, and info
     // We might not need No or Time right now, but these values could be useful for future versions so i'm reading the info in just in case.
-    public packet(string time, string source, string dest, string protocol, string port)
+    public packet(string time, string source, string dest, string protocol, string length)
     {
         this.protocol = protocol;
         this.ipSource = source;
         this.ipDest = dest;                  
         this.time = time;
-        this.port = port; 
+        this.length = length; 
     }
 }
 
