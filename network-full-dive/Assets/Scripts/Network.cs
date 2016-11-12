@@ -13,6 +13,7 @@ public class Network : MonoBehaviour {
     List<packet> logged;
     GameObject[] ports;
     float timer, timeStep = .2f;
+    float resetTimer, resetTimeStep = 10f;
     string[] ips;
 
 	void Start () {
@@ -53,6 +54,11 @@ public class Network : MonoBehaviour {
         return null;
     }
     
+    void addPackets() {
+        ReadInPackets rip = new ReadInPackets( "Assets/PacketData/test.csv" );
+        queued.AddRange(rip.packetLst);
+    }
+
 
     void Update() {
         if(!GameState.isPaused()) {
@@ -75,5 +81,11 @@ public class Network : MonoBehaviour {
                 }
             }
         }
+
+        if (resetTimer >= resetTimeStep) {
+            reinit();
+        } else resetTimer += Time.deltaTime;
+
+
     }
 }
