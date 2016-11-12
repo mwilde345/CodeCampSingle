@@ -13,9 +13,6 @@ public class Network : MonoBehaviour {
     GameObject[] ports;
     string[] ips;
 
-    //Replace with getUniqueIPs from ReadInPackets;
-    int numberOfPorts;
-
 	void Start () {
         active = new List<PacketAttributes>();
         ReadInPacketsComma rip = new ReadInPacketsComma( "Assets/PacketData/test.csv" );
@@ -36,8 +33,13 @@ public class Network : MonoBehaviour {
     void initPorts() {
         //Get total number of ports to be simulated;
         //Get an String array of ips
-        if (numberOfPorts < 1) return;
-        Vector3[] portPoints = PortInit.initPortPoints( radius, numberOfPorts );
+        //ips = FilterData.uniqueSourceIPs(queued).ToArray();
+        //List<packet> unique = FilterData.uniqueSourceIPs();
+        //for (int i = 0; i < unique.Count; i++) {
+         //   ips[i] = packet.
+        //s}
+        if (ips.Length < 1) return;
+        Vector3[] portPoints = PortInit.initPortPoints( radius, ips.Length );
         for (int i = 0; i < portPoints.Length; i++) {
             GameObject portInstance = Instantiate( port );
             portInstance.transform.position = portPoints[i];
