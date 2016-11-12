@@ -36,7 +36,7 @@ public class Network : MonoBehaviour {
         Vector3[] portPoints = PortInit.initPortPoints( radius, ips.Length );
         for (int i = 0; i < portPoints.Length; i++) {
             GameObject portInstance = Instantiate( port );
-            portInstance.transform.FindChild( "IP" ).GetComponent<TextMesh>().text = ips[i];
+            portInstance.GetComponent<Node>().ip = ips[i];
             portInstance.transform.position = portPoints[i];
             portInstance.transform.LookAt( GameObject.FindGameObjectWithTag( "Center" ).transform );
             portInstance.transform.rotation *= Quaternion.Euler( 270, 180, 0 );
