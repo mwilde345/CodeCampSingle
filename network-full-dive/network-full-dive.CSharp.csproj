@@ -63,6 +63,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Cat\AniControl.cs" />
+    <Compile Include="Assets\Scripts\Cat\CharControl.cs" />
+    <Compile Include="Assets\Scripts\Cat\CharData.cs" />
+    <Compile Include="Assets\Scripts\Cat\JoystickToEvents.cs" />
+    <Compile Include="Assets\Scripts\Cat\Locomotion.cs" />
+    <Compile Include="Assets\Scripts\Cat\LocomotionPlayer.cs" />
+    <Compile Include="Assets\Scripts\Cat\sctCharRot.cs" />
+    <Compile Include="Assets\Scripts\DataControl.cs" />
     <Compile Include="Assets\Scripts\FilterData.cs" />
     <Compile Include="Assets\Scripts\GameState.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />

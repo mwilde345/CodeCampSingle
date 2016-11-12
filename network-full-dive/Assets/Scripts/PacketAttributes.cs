@@ -26,11 +26,11 @@ public class PacketAttributes : MonoBehaviour {
 
         string protocol = packet.protocol;
 
-        if(protocol.Equals(" TCP ")) GetComponent<Renderer>().material = red;
-        else if (protocol.Equals( " UDP " )) GetComponent<Renderer>().material = blue;
-        else if (protocol.Equals( " ARP " )) GetComponent<Renderer>().material = green;
-        else if (protocol.Equals( " DHCP " )) GetComponent<Renderer>().material = yellow;
-        else if (protocol.Equals( " SSDP" )) GetComponent<Renderer>().material = purple;
+        if(protocol.Trim().Contains("MDNS")) GetComponent<Renderer>().material = red;
+        else if (protocol.Trim().Contains( "UDP" )) GetComponent<Renderer>().material = blue;
+        else if (protocol.Trim().Contains( "BJNP" )) GetComponent<Renderer>().material = green;
+        else if (protocol.Trim().Contains( "DHCP" )) GetComponent<Renderer>().material = yellow;
+        else if (protocol.Trim().Contains( "SSDP" )) GetComponent<Renderer>().material = purple;
         else GetComponent<Renderer>().material = pink;
 
         gameObject.transform.position = src.position;

@@ -12,7 +12,7 @@ public class Network : MonoBehaviour {
     List<packet> queued;
     List<packet> logged;
     GameObject[] ports;
-    float timer, timeStep = .2f;
+    float timer, timeStep = .05f;
     float resetTimer, resetTimeStep = 10f;
     string[] ips;
 
@@ -28,7 +28,6 @@ public class Network : MonoBehaviour {
     void initPorts() {
         //Get total number of ports to be simulated;
         //Get an String array of ips
-        //ips = FilterData.uniqueSourceIPs(queued).ToArray();
         ips = FilterData.allUniqueIPs( queued ).ToArray();
         if (ips.Length < 1) {
             print( "Problem with unique ips array" );
@@ -83,9 +82,7 @@ public class Network : MonoBehaviour {
         }
 
         if (resetTimer >= resetTimeStep) {
-            reinit();
+            addPackets();
         } else resetTimer += Time.deltaTime;
-
-
     }
 }
