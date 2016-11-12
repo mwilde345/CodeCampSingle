@@ -1,0 +1,13 @@
+C:\Users\Sara\Documents\GitHub\CodeCampSingle\network-full-dive\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+C:\Users\Sara\Documents\GitHub\CodeCampSingle\network-full-dive\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+C:\Users\Sara\Documents\GitHub\CodeCampSingle\network-full-dive\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\Users\Sara\Documents\GitHub\CodeCampSingle\network-full-dive\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Users\Sara\Documents\GitHub\CodeCampSingle\network-full-dive\Temp\UnityVS_bin\Debug\UnityEngine.Networking.dll
+C:\Users\Sara\Documents\GitHub\CodeCampSingle\network-full-dive\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+C:\Users\Sara\Documents\GitHub\CodeCampSingle\network-full-dive\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Users\Sara\Documents\GitHub\CodeCampSingle\network-full-dive\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+C:\Users\Sara\Documents\GitHub\CodeCampSingle\network-full-dive\Temp\UnityVS_bin\Debug\UnityEngine.Networking.xml
+C:\Users\Sara\Documents\GitHub\CodeCampSingle\network-full-dive\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\Users\Sara\Documents\GitHub\CodeCampSingle\network-full-dive\Temp\UnityVS_obj\Debug\network-full-dive.CSharp.csprojResolveAssemblyReference.cache
+C:\Users\Sara\Documents\GitHub\CodeCampSingle\network-full-dive\Temp\UnityVS_obj\Debug\Assembly-CSharp.dll
+C:\Users\Sara\Documents\GitHub\CodeCampSingle\network-full-dive\Temp\UnityVS_obj\Debug\Assembly-CSharp.pdb
