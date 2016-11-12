@@ -71,11 +71,13 @@
     <Compile Include="Assets\Scripts\PacketAttributes.cs" />
     <Compile Include="Assets\Scripts\PlayerLookingAt.cs" />
     <Compile Include="Assets\Scripts\PortInit.cs" />
-    <Compile Include="Assets\Scripts\ReadInPacketsComma.cs" />
+    <Compile Include="Assets\Scripts\ReadInPackets.cs" />
     <Compile Include="Assets\VRGUI\Scripts\VRGUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\PacketData\WiresharkData.txt" />
+    <None Include="Assets\PacketData\hey.txt" />
+    <None Include="Assets\PacketData\testData.txt" />
     <None Include="Assets\Shaders\Inverted Diffuse.shader" />
     <None Include="Assets\VRGUI\Shaders\VRGUITransparentOverlayShader.shader" />
   </ItemGroup>

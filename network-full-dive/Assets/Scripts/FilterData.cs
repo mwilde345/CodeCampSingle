@@ -6,23 +6,7 @@ using System.Collections.Generic;
 public class FilterData
 {
 
-
-    //Test stuff 
-   
-
-    // Returns a packet list of the first occurance of each unique ipSource 
-    static List<packet> uniqueSourceIPs(List<packet> pktLst)
-    {
-        List<packet> uniqueIPList = new List<packet>();
-        while (pktLst.Count != 0)
-        {
-            packet p = pktLst.First();
-            Console.WriteLine(p.ipSource);
-            pktLst = pktLst.Where(x => !x.ipSource.Trim().Contains(p.ipSource.Trim())).ToList();
-            uniqueIPList.Add(p);
-        }
-        return uniqueIPList;
-    }
+    
 
     static List<string> uniqueIpSrcStrings(List<packet> pktLst)
     {
@@ -30,7 +14,7 @@ public class FilterData
         while (pktLst.Count != 0)
         {
             packet p = pktLst.First();
-            Console.WriteLine(p.ipSource);
+            
             pktLst = pktLst.Where(x => !x.ipSource.Trim().Contains(p.ipSource.Trim())).ToList();
             uniqueIPList.Add(p.ipSource);
         }
@@ -43,14 +27,14 @@ public class FilterData
         while (pktLst.Count != 0)
         {
             packet p = pktLst.First();
-            Console.WriteLine(p.ipDest);
+            
             pktLst = pktLst.Where(x => !x.ipDest.Trim().Contains(p.ipDest.Trim())).ToList();
             uniqueIPList.Add(p.ipDest);
         }
         return uniqueIPList;
     }
 
-    public static List<string> allUniqueIPs (List<packet> pktLst)
+    public static List<string> allUniqueIPs(List<packet> pktLst)
     {
         List<string> srcIps = uniqueIpSrcStrings(pktLst);
         List<string> destIps = uniqueIpDestStrings(pktLst);
@@ -61,11 +45,25 @@ public class FilterData
     }
 
 
-    static List<packet> findOccurances(string uniqueIP, List<packet> pktLst)
+    public static List<packet> findOccurances(string uniqueIP, List<packet> pktLst)
     {
         pktLst = pktLst.Where(x => x.ipSource.Trim().Contains(uniqueIP.Trim())).ToList();
         return pktLst;
     }
-     
+
+
+    public static List<string> uniqueProtocols(List<packet> pktLst)
+    {
+        List<string> protocolLst = new List<string>();
+        while (pktLst.Count != 0)
+        {
+            packet p = pktLst.First();
+
+            pktLst = pktLst.Where(x => !x.protocol.Trim().Equals(p.protocol.Trim())).ToList();
+            protocolLst.Add(p.protocol);
+        }
+        return protocolLst; 
+
+    }
 
 }

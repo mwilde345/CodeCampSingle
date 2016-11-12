@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameState : MonoBehaviour {
 
-    static bool pause = true;
+    static bool pause = false;
     static float timer, reset = 0.18f;
     
     void Update() {
