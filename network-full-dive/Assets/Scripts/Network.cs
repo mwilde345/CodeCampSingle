@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Network : MonoBehaviour {
 
     public GameObject port;
-    public GameObject packet;
+    public GameObject viewablePacket;
     public float radius;
 
     List<GameObject> active;
@@ -38,7 +38,7 @@ public class Network : MonoBehaviour {
             portInstance.transform.FindChild( "IP" ).GetComponent<TextMesh>().text = ips[i];
             portInstance.transform.position = portPoints[i];
             portInstance.transform.LookAt( GameObject.FindGameObjectWithTag( "Center" ).transform );
-            portInstance.transform.rotation *= Quaternion.Euler( 90, 0, 0 );
+            portInstance.transform.rotation *= Quaternion.Euler( 270, 180 , 0 );
             ports[i] = portInstance;
         }
     }
@@ -60,7 +60,7 @@ public class Network : MonoBehaviour {
                     Transform src = getPortFromIP( current.ipSource );
                     Transform dst = getPortFromIP( current.ipDest );
                     if (transform != null) {
-                        GameObject packetInstance = Instantiate( packet );
+                        GameObject packetInstance = Instantiate( viewablePacket );
                         packetInstance.GetComponent<PacketAttributes>().init( current, src, dst );
                     }
                 }
