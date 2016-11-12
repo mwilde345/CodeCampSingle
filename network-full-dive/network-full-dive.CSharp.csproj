@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\ReadInPacketsComma.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\3D\Inverted Diffuse.shader" />
     <None Include="Assets\PacketData\WiresharkData.txt" />
     <None Include="Assets\resources.txt" />
   </ItemGroup>

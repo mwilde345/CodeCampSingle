@@ -5,14 +5,10 @@ public class PacketAttributes : MonoBehaviour {
 
     public Material red, blue, green, yellow, purple, pink;
     public float speed;
-    bool hasExpired;
-
-    //Packet Object
-    //GameObject po;
+   
     Transform dst;
     packet packet;
     float timer;
-    //Material material;
     
     public void init(packet packet, Transform src, Transform dst) {
         this.packet = packet;
@@ -43,8 +39,5 @@ public class PacketAttributes : MonoBehaviour {
 	}
     public packet getRaw() {
         return packet;
-    }
-    public bool checkExpirationDate() {
-        return hasExpired;
     }
 }
