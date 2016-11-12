@@ -71,5 +71,5 @@ public class Network : MonoBehaviour {
             //Might have to to a clean up for the list
         }
     }
-     s
+     
 }
